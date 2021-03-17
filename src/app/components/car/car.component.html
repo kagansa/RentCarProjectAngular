@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-header">Tüm Araçlar</div>
+  <div class="card-body">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Marka</th>
+          <th scope="col">Araç</th>
+          <th scope="col">Renk</th>
+          <th scope="col">Fiyat</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let car of cars">
+          <td>{{ car.brandName }}</td>
+          <td>{{ car.carName }}</td>
+          <td>{{ car.colorName }}</td>
+          <td>{{ car.dailyPrice }} TL</td>
+          <td><a class="btn btn-primary" href="arac/{{ car.carId }}" role="button">Detay</a></td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

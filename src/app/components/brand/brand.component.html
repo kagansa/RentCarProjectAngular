@@ -1,0 +1,4 @@
+<ul class="list-group" >
+    <a href="araclar" class="list-group-item list-group-item-action">Tüm Markalar</a>
+    <a *ngFor="let brand of brands" routerLinkActive="active" routerLink="araclar/marka/{{brand.id}}" class="list-group-item list-group-item-action">{{ brand.name }}</a>    
+</ul>

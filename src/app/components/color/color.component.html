@@ -1,0 +1,5 @@
+<hr>
+<ul class="list-group" >
+    <a href="araclar" class="list-group-item list-group-item-action">Tüm Renkler</a>
+    <a *ngFor="let color of colors" routerLinkActive="active" routerLink="araclar/renk/{{color.id}}" class="list-group-item list-group-item-action">{{ color.name }}</a>    
+</ul>
