@@ -1,0 +1,33 @@
+<div class="card text-center">
+  <div class="card-header">
+    <label for="filterText" class="form-label">Markalar</label>
+    <input
+      type="text"
+      [(ngModel)]="filterText"
+      class="form-control"
+      id="filterText"
+      placeholder="Marka Adı Ara"
+    />
+  </div>
+</div>
+<div class="card-body">
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Marka</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let brand of brands | brandFilter: filterText">
+        <td>
+          <a
+            class="btn btn-primary"
+            href="araclar/marka/{{ brand.id }}"
+            role="button"
+            >{{ brand.name }}</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

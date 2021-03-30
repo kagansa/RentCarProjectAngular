@@ -4,13 +4,21 @@
   </div>    
   <div class="col-md-2">
     <div class="card" style="width: 18rem"> 
-      <ul *ngFor="let car of cars" class="list-group list-group-flush">
+      <ul *ngFor="let car of carDetails" class="list-group list-group-flush">
+       
         <li class="list-group-item">Marka: {{ car.brandName }}</li>
         <li class="list-group-item">Model: {{ car.carName }}</li>
-        <li class="list-group-item">Yıl: {{ car.modelYear }}</li>
-        <li class="list-group-item">Renk: {{ car.colorName }}</li>
-        <li class="list-group-item">Fiyat:{{ car.dailyPrice }} TL</li>
-      </ul>
-    </div>   
-  </div>
+        <li class="list-group-item">Yıl:   {{ car.modelYear }}</li>
+        <li class="list-group-item">Renk:  {{ car.colorName }}</li>
+        <li class="list-group-item">Fiyat: {{ car.dailyPrice }} TL</li>
+
+      </ul> 
+      <br>
+      <button *ngIf="rentalControl == true" type="button"  class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#rentalModal">Kirala</button>
+      <button *ngIf="rentalControl == false" type="button" class="btn btn-secondary btn-lg" disabled>{{ rentalMessage }}</button>
+    </div>  
+  </div> 
 </div>
+
+<app-rental-add *ngIf="rentalControl == true" [car]="carDetails"></app-rental-add>
+

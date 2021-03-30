@@ -1,0 +1,117 @@
+<div class="container">
+    <main>
+      <div class="py-5 text-center">        
+        <h2>Ödeme</h2>
+      </div>
+
+      <button *ngIf="paymentWait == true" class="btn btn-primary" type="button"disabled>
+        <span class="spinner-border spinner-border-sm" role="status"aria-hidden="true"></span>
+          Banka ile iletişim kuruluyor...
+      </button>  
+
+      <div *ngIf="paymentSuccess" class="card text-white bg-success">        
+        <div class="card-body">
+          <h5 class="card-title">Ödeme İşlemi Başarılı</h5>
+          <p class="card-text">Araç Kiralandı.</p>
+        </div>
+      </div>
+
+      <div *ngIf="paymentError" class="card text-white bg-danger">        
+        <div class="card-body">
+          <h5 class="card-title">Ödeme Alınamadı!</h5>
+          <p class="card-text">....</p>
+        </div>
+        <br>
+      </div>
+  
+      <div *ngIf="paymentSuccess == false  && paymentWait==false" class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Rezervasyon</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">{{rentDate}}</h6>
+                <small class="text-muted">Başlangıç Tarihi</small>
+              </div>            
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">{{rentEndDate}}</h6>
+                  <small class="text-muted">Bitiş Tarihi</small>
+                </div>            
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">{{totalDay}}</h6>
+                  <small class="text-muted">Gün</small>
+                </div>            
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">{{dailyPrice}} TL</h6>
+                  <small class="text-muted">Günlük Ücret</small>
+                </div>            
+              </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Toplam</span>
+              <strong>{{totalPrice}} TL</strong>
+            </li>
+          </ul>
+  
+        </div>
+        <div class="col-md-7 col-lg-8">
+          <form [formGroup]="paymentAddForm" class="needs-validation" novalidate>            
+  
+            <div class="row gy-3">
+              <div class="col-md-12">
+                <label for="cc-name" class="form-label">Kredi Kartı Sahibi</label>
+                <input formControlName="fullName" type="text" class="form-control" id="cc-name"  required>
+                <small class="text-muted">Full name as displayed on card</small>
+                <div class="invalid-feedback">
+                  Name on card is required
+                </div>
+              </div>
+  
+              <div class="col-md-12">
+                <label for="cc-number" class="form-label">Kredi Kartı Numarası</label>
+                <input formControlName="number"  type="text" class="form-control" id="cc-number"  required>
+                <div class="invalid-feedback">
+                  Credit card number is required
+                </div>
+              </div>
+  
+              <div class="col-md-4">
+                <label for="cc-expiration" class="form-label">Son Kullanım Ay</label>
+                <input formControlName="expirationMonth"  type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                <div class="invalid-feedback">
+                  Expiration date required
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="cc-expiration" class="form-label">Son Kullanım Yıl</label>
+                <input formControlName="expirationYear" type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                <div class="invalid-feedback">
+                  Expiration date required
+                </div>
+              </div>
+  
+              <div class="col-md-4">
+                <label for="cc-cvv" class="form-label">CVV</label>
+                <input formControlName="ccv" type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                <div class="invalid-feedback">
+                  Security code required
+                </div>
+              </div>
+            </div>
+  
+            <hr class="my-4">
+  
+            <button (click)="paymentAdd()" class="w-100 btn btn-success btn-lg" type="submit">Ödeme Yap</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>

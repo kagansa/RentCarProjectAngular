@@ -10,18 +10,25 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarComponent implements OnInit {
   cars: Car[] = [];
-  constructor(private carService: CarService,private activatedRouted: ActivatedRoute) {}
+  filterText="";
+  
+  constructor(private carService: CarService,
+              private activatedRouted: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.activatedRouted.params.subscribe(params => {
-      if(params["brandId"])
+      if(params["brandId"] && params["colorId"])
+      {
+        this.getCarsBrandAndColor(params["brandId"],params["colorId"])
+      }
+      else if(params["brandId"])
       {
         this.getCarsByBrand(params["brandId"])
       }
       else if(params["colorId"])
       {
         this.getCarsByColor(params["colorId"])
-      }
+      }     
       else{
         this.getCar();
       }
@@ -43,6 +50,10 @@ export class CarComponent implements OnInit {
   getCarsByColor(colorId:number) {
     this.carService.getCarsByColor(colorId).subscribe((response) => {
       this.cars = response.data;
-    });
-  }
+    });}
+
+    getCarsBrandAndColor(brandId:number,colorId:number) {
+      this.carService.getCarsBrandAndColor(brandId,colorId).subscribe((response) => {
+        this.cars = response.data;
+      });}
 }

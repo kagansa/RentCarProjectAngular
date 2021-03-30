@@ -1,5 +1,13 @@
 <div class="card">
-  <div class="card-header">Tüm Araçlar</div>
+  <div class="card-header">
+    <label for="filterText" class="form-label">Araçlar</label>
+    <input
+      type="text"
+      [(ngModel)]="filterText"
+      class="form-control"
+      id="filterText"
+      placeholder="Model Adı Ara"
+    /></div>
   <div class="card-body">
     <table class="table table-striped table-hover">
       <thead class="table-dark">
@@ -12,7 +20,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let car of cars">
+        <tr *ngFor="let car of cars | carFilter:filterText">
           <td>{{ car.brandName }}</td>
           <td>{{ car.carName }}</td>
           <td>{{ car.colorName }}</td>

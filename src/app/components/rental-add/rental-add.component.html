@@ -1,0 +1,51 @@
+<div *ngFor="let c of car" class="modal fade" id="rentalModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">          
+          <h5 class="modal-title" id="exampleModalLabel">{{c.brandName | uppercase }} {{c.carName}}   Kirala</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeModal></button>
+        </div>
+        <div class="modal-body">  
+  
+          <form [formGroup]="rentalAddForm">
+            <input formControlName="carId" type="hidden" >
+            <fieldset>        
+              <div class="mb-3">
+                <label for="Customer" class="form-label">Müşteri</label>
+                <select formControlName="customerId"  [(ngModel)]="customerId" class="form-select">
+                  <option *ngFor="let customer of customers" [ngValue]="customer.id"  class="option">
+                    {{ customer.companyName }}
+                  </option>
+                </select>
+              </div>     
+              <div class="mb-3">
+                <label for="rentDate" class="form-label">Başlangıç Tarihi</label>
+                <input formControlName="rentDate" min="{{minDate}}" (change)="onChangeEvent($event)"  type="date" class="form-control"/>
+              </div>
+              <div class="mb-3">
+                <label for="rentEndDate" class="form-label">Bitiş Tarihi</label>
+                <input formControlName="rentEndDate" min="{{minDate}}" (change)="rentEndChangeEvent($event)" type="date" class="form-control"/>
+              </div>
+              <div class="mb-3">
+                <label for="totalDay" class="form-label">Gün</label>
+                <input formControlName="totalDay" [(ngModel)]="totalDay" class="form-control" readonly/>               
+              </div>
+              <div class="mb-3">
+                <label for="dailyPrice" class="form-label">Günlük Fiyat</label>
+                <input formControlName="dailyPrice" class="form-control" readonly/>               
+              </div>
+              <div class="mb-3">
+                <label for="totalPrice" class="form-label">Toplam Fiyat</label>
+                <input formControlName="totalPrice" [(ngModel)]="totalPrice" class="form-control" readonly/>               
+              </div>
+            </fieldset>
+          </form>      
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+          <button (click)="paymentRoute()" type="button" class="btn btn-success">Ödeme</button>
+        </div>
+      </div>
+    </div>
+  </div>

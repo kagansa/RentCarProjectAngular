@@ -1,0 +1,27 @@
+<div class="card text-center">
+    <div class="card-header">
+      <label for="filterText" class="form-label">Renkler</label>
+      <input
+        type="text"
+        [(ngModel)]="filterText"
+        class="form-control"
+        id="filterText"
+        placeholder="Renk Adı Ara"
+      />
+    </div>
+    <div class="card-body">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Renk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let color of colors | colorFilter:filterText">
+            <td><a class="btn btn-primary" href="araclar/renk/{{ color.id }}" role="button">{{ color.name }}</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

@@ -1,4 +1,9 @@
-<ul class="list-group" >
-    <a href="araclar" class="list-group-item list-group-item-action">Tüm Markalar</a>
-    <a *ngFor="let brand of brands" routerLinkActive="active" routerLink="araclar/marka/{{brand.id}}" class="list-group-item list-group-item-action">{{ brand.name }}</a>    
-</ul>
+<div class="card">
+  <div class="card-header">Markalar</div>
+  <select (change)="setCurrentBrand()" [(ngModel)]="selectedBrand" class="form-select">
+    <option [ngValue]="allBrand" [selected]="allBrandSelected()" class="option">Tüm Markalar</option>
+    <option *ngFor="let brand of brands" [ngValue]="brand" class="option">
+      {{ brand.name }}
+    </option>
+  </select>
+</div>

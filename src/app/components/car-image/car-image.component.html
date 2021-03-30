@@ -1,7 +1,7 @@
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div *ngFor="let img of carImages let i = first"  class="carousel-item active" [class.active]="i">
-        <img src="{{path}}/{{ img.imagePath }}" class="d-block w-100" alt="...">
+        <img src="{{path}}/{{ img.imagePath }}" class="d-block w-100 img-fluid">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">

@@ -1,0 +1,9 @@
+<app-brand (brandId)="currentBrandId($event)"></app-brand>
+<hr>
+<app-color (colorId)="currentColorId($event)"></app-color>
+<br>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button class="btn btn-outline-secondary" (click)="clearRoute()" >Temizle</button>
+  <button class="btn btn-outline-primary" (click)="setRoute()" >Filtrele</button>  
+</div>
