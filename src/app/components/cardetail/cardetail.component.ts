@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Car } from 'src/app/models/car';
+import {  CarDetail } from 'src/app/models/carDetail';
 import { CarService } from 'src/app/services/car.service';
 import { RentalService } from 'src/app/services/rental.service';
 
@@ -11,7 +11,7 @@ import { RentalService } from 'src/app/services/rental.service';
 })
 export class CardetailComponent implements OnInit {
 
-  carDetails:Car[];
+  carDetails:CarDetail[];
   carDetailsLoad=false;
   rentalControl = false;
   rentalMessage="";

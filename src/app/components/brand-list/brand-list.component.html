@@ -9,12 +9,12 @@
       placeholder="Marka Adı Ara"
     />
   </div>
-</div>
 <div class="card-body">
   <table class="table table-striped table-hover">
     <thead class="table-dark">
       <tr>
         <th scope="col">Marka</th>
+        <th scope="col"><a role="button" href="markalar/ekle" class="btn btn-outline-success">Yeni Ekle</a></th>
       </tr>
     </thead>
     <tbody>
@@ -26,6 +26,9 @@
             role="button"
             >{{ brand.name }}</a
           >
+        </td>
+        <td>
+          <a role="button" href="markalar/duzenle/{{ brand.id }}" class="btn btn-outline-secondary">Düzenle</a>
         </td>
       </tr>
     </tbody>

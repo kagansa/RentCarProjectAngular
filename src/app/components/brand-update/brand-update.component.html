@@ -1,0 +1,11 @@
+<div class="card border-warning">
+    <h5 class="card-header">Marka Düzenle</h5>
+    <div class="card-body">
+      <h5 class="card-title">Marka Adı</h5>
+      <form [formGroup]="brandUpdateForm">
+      <input formControlName="name" type="text" class="form-control">
+      <br>
+      <button (click)="update()" [disabled]="!brandUpdateForm.valid" type="button"  class="btn btn-primary">Güncelle</button>
+     </form>
+    </div>
+</div>

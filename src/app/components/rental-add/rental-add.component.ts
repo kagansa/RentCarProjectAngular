@@ -1,10 +1,9 @@
 import { Component, Input, OnInit,ElementRef,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Car } from 'src/app/models/car';
+import {  CarDetail } from 'src/app/models/carDetail';
 import { Customer } from 'src/app/models/customer';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer.service';
-import { RentalService } from 'src/app/services/rental.service';
 import { DatePipe } from '@angular/common';
 import { Toast, ToastrService } from 'ngx-toastr';
 
@@ -17,7 +16,7 @@ import { Toast, ToastrService } from 'ngx-toastr';
 export class RentalAddComponent implements OnInit {
   @ViewChild('closeModal') closeModal: ElementRef
 
-  @Input() car: Car[];
+  @Input() car: CarDetail[];
   customers: Customer[];
   customerId:number;    
   rentalAddForm: FormGroup;
@@ -29,8 +28,7 @@ export class RentalAddComponent implements OnInit {
   totalPrice:number=0;
   totalDay:number=1;
   
-  constructor(private rentalService: RentalService,
-              private customerService: CustomerService,
+  constructor(private customerService: CustomerService,
               private formBuilder: FormBuilder,             
               private router: Router,
               private datePipe: DatePipe,
@@ -40,7 +38,7 @@ export class RentalAddComponent implements OnInit {
     this.getCustomer();
     this.dateApply();
     this.createProductAddForm();
-    
+    this.priceCalculator();
   }
 
   getCustomer() {

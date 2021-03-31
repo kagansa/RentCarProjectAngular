@@ -1,0 +1,43 @@
+<div class="card border-warning">
+    <h5 class="card-header">Araç Düzenle</h5>
+    <div class="card-body">
+      <form [formGroup]="carUpdateForm">
+        <div class="mb-3">
+          <label class="form-label">Marka</label>
+          <select formControlName="brandId"  [(ngModel)]="brandId" class="form-select">
+              <option *ngFor="let brand of brands" [ngValue]="brand.id"  class="option">
+                {{ brand.name }}
+              </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Model Ad</label>
+          <input formControlName="description" type="text" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Model Yıl</label>
+          <input formControlName="modelYear" type="text" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Renk</label>
+          <select formControlName="colorId"  [(ngModel)]="colorId"  class="form-select">
+              <option *ngFor="let color of colors" [ngValue]="color.id"  class="option">
+                {{ color.name }}
+              </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Günlük Ücret  </label>
+          <div class="input-group">
+            <input formControlName="dailyPrice" type="number" class="form-control" />
+            <span class="input-group-text">.00</span>
+            <span class="input-group-text">TL</span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <button (click)="update()" [disabled]="!carUpdateForm.valid" type="button" class="btn btn-primary">Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

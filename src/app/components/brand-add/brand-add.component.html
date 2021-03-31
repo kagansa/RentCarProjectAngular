@@ -1,0 +1,11 @@
+<div class="card border-info">
+    <h5 class="card-header">Marka Ekle</h5>
+    <div class="card-body">
+      <h5 class="card-title">Marka Adı</h5>
+      <form [formGroup]="brandAddForm">
+      <input formControlName="name" type="text" class="form-control">
+      <br>
+      <button [disabled]="!brandAddForm.valid" type="button" (click)="add()" class="btn btn-primary">Kaydet</button>
+     </form>
+    </div>
+</div>
