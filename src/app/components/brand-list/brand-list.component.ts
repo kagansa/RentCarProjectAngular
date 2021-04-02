@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Brand } from 'src/app/models/brand';
+import { AuthService } from 'src/app/services/auth.service';
 import { BrandService } from 'src/app/services/brand.service';
 
 @Component({
@@ -13,9 +14,11 @@ export class BrandListComponent implements OnInit {
   dataLoaded = false;
   filterText="";
 
-  constructor(private brandService:BrandService) { }
+  constructor(private brandService:BrandService,
+              public authService: AuthService) { }
 
   ngOnInit(): void {
+    this.isAuth();
     this.getBrands();
   }
 
@@ -24,6 +27,12 @@ export class BrandListComponent implements OnInit {
       this.brands = response.data;
       this.dataLoaded = response.success;
     });
+  }
+
+  isAuth(){
+    if (this.authService.isAuthenticated()) {
+      this.authService.userDetailFromToken();
+    }
   }
 
 }

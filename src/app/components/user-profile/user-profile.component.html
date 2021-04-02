@@ -1,0 +1,27 @@
+<div class="card border-warning">
+    <h5 class="card-header">Profil Düzenle</h5>
+    <div class="card-body">
+      <form [formGroup]="userUpdateForm">        
+        <div class="mb-3">
+          <label class="form-label">Ad</label>
+          <input formControlName="firstName" type="text" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Soyad</label>
+          <input formControlName="lastName" type="text" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input formControlName="email" type="email" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Şifre</label>
+            <input formControlName="password" type="password" class="form-control" />
+          </div>
+        <div class="mb-3">
+          <button (click)="update()" [disabled]="!userUpdateForm.valid" type="button" class="btn btn-primary">Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

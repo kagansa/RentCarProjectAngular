@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CarDetail } from 'src/app/models/carDetail';
+import { AuthService } from 'src/app/services/auth.service';
 import { CarService } from 'src/app/services/car.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class CarComponent implements OnInit {
   filterText="";
   
   constructor(private carService: CarService,
-              private activatedRouted: ActivatedRoute) {}
+              private activatedRouted: ActivatedRoute,
+              public authService: AuthService) {}
 
   ngOnInit(): void {
     this.activatedRouted.params.subscribe(params => {
@@ -32,7 +34,8 @@ export class CarComponent implements OnInit {
       else{
         this.getCar();
       }
-    })   
+    })
+    this.isAuth();   
   }
 
   getCar() {
@@ -52,8 +55,14 @@ export class CarComponent implements OnInit {
       this.cars = response.data;
     });}
 
-    getCarsBrandAndColor(brandId:number,colorId:number) {
-      this.carService.getCarsBrandAndColor(brandId,colorId).subscribe((response) => {
-        this.cars = response.data;
-      });}
+  getCarsBrandAndColor(brandId:number,colorId:number) {
+    this.carService.getCarsBrandAndColor(brandId,colorId).subscribe((response) => {
+      this.cars = response.data;
+    });}
+
+  isAuth(){
+    if (this.authService.isAuthenticated()) {
+      this.authService.userDetailFromToken();
+    }
+  }
 }

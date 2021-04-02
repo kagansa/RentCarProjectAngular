@@ -5,7 +5,8 @@ import { Customer } from 'src/app/models/customer';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer.service';
 import { DatePipe } from '@angular/common';
-import { Toast, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
+import { FindeksService } from 'src/app/services/findeks.service';
 
 @Component({
   selector: 'app-rental-add',
@@ -27,8 +28,12 @@ export class RentalAddComponent implements OnInit {
   date:Date;
   totalPrice:number=0;
   totalDay:number=1;
+  findeksLoad:boolean=true;
+  findeksError:boolean=true;
+  findeksMsg:string;
   
   constructor(private customerService: CustomerService,
+              private findeksService: FindeksService,
               private formBuilder: FormBuilder,             
               private router: Router,
               private datePipe: DatePipe,
@@ -73,6 +78,21 @@ export class RentalAddComponent implements OnInit {
   onChangeEvent(event: any) {
     this.minDate = event.target.value;    
     this.rentDate=event.target.value;
+  }
+
+  customerChange(event: any) {
+    this.findeksLoad=false;
+    this.findeksService.query(this.car[0].carId,this.customerId).subscribe((response) => {
+       if (response.success) {
+        this.findeksLoad=true;
+       }
+       else{
+         this.findeksMsg=response.message;
+         this.findeksLoad=false;
+         this.findeksError=false;
+         this.toastr.error(response.message);
+       } 
+    });
   }
 
   rentEndChangeEvent(event: any) {

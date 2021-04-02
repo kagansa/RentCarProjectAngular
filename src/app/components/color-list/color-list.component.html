@@ -14,13 +14,13 @@
         <thead class="table-dark">
           <tr>
             <th scope="col">Renk</th>
-            <th scope="col"><a role="button" href="renkler/ekle" class="btn btn-outline-success">Yeni Ekle</a></th>
+            <th *ngIf="authService.isAuthenticated()" scope="col"><a role="button" href="renkler/ekle" class="btn btn-outline-success">Yeni Ekle</a></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let color of colors | colorFilter:filterText">
             <td><a class="btn btn-primary" href="araclar/renk/{{ color.id }}" role="button">{{ color.name }}</a></td>
-            <td>
+            <td *ngIf="authService.isAuthenticated()">
               <a role="button" href="renkler/duzenle/{{ color.id }}" class="btn btn-outline-secondary">Düzenle</a>
             </td>
           </tr>

@@ -1,0 +1,16 @@
+<body class="text-center">    
+  <main class="form-signin">
+    <form [formGroup]="loginForm" >        
+      <h1 class="h3 mb-3 fw-normal">Giriş Yap</h1>  
+      <div class="form-floating">
+        <input formControlName="email" ngModel [email]="true" type="email" class="form-control" placeholder="name@example.com">
+        <label for="floatingInput">E-Posta</label>
+      </div>
+      <div class="form-floating">
+        <input formControlName="password" type="password" class="form-control"  placeholder="Şifre">
+        <label for="floatingPassword">Parola</label>
+      </div>  
+      <button (click)="login()" [disabled]="!loginForm.valid" class="w-100 btn btn-lg btn-primary">Giriş Yap</button>
+    </form>
+  </main>        
+</body>

@@ -5,4 +5,5 @@ export interface CarDetail{
     colorName:string;
     dailyPrice:number;
     modelYear:string;
+    minFindeksScore:number;
 }

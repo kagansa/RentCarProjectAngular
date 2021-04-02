@@ -6,13 +6,25 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeModal></button>
         </div>
         <div class="modal-body">  
+
+          <div *ngIf="!findeksLoad && findeksError" class="alert alert-warning" role="alert">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div> <strong>Findeks Puanı Sorgulanıyor</strong> 
+          </div>
+          <div *ngIf="findeksLoad==false && findeksError==false" class="alert alert-danger" role="alert">
+            <div class="spinner-grow text-danger" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <strong>{{findeksMsg}}</strong> 
+          </div>
   
-          <form [formGroup]="rentalAddForm">
+          <form *ngIf="findeksLoad" [formGroup]="rentalAddForm">
             <input formControlName="carId" type="hidden" >
             <fieldset>        
               <div class="mb-3">
                 <label for="Customer" class="form-label">Müşteri</label>
-                <select formControlName="customerId"  [(ngModel)]="customerId" class="form-select">
+                <select formControlName="customerId"  [(ngModel)]="customerId" (change)="customerChange($event)" class="form-select">
                   <option *ngFor="let customer of customers" [ngValue]="customer.id"  class="option">
                     {{ customer.companyName }}
                   </option>
@@ -44,7 +56,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
-          <button (click)="paymentRoute()" type="button" class="btn btn-success">Ödeme</button>
+          <button *ngIf="findeksLoad" (click)="paymentRoute()" type="button" class="btn btn-success">Ödeme</button>
         </div>
       </div>
     </div>

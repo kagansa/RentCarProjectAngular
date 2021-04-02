@@ -14,7 +14,7 @@
     <thead class="table-dark">
       <tr>
         <th scope="col">Marka</th>
-        <th scope="col"><a role="button" href="markalar/ekle" class="btn btn-outline-success">Yeni Ekle</a></th>
+        <th *ngIf="authService.isAuthenticated()" scope="col"><a role="button" href="markalar/ekle" class="btn btn-outline-success">Yeni Ekle</a></th>
       </tr>
     </thead>
     <tbody>
@@ -27,7 +27,7 @@
             >{{ brand.name }}</a
           >
         </td>
-        <td>
+        <td *ngIf="authService.isAuthenticated()">
           <a role="button" href="markalar/duzenle/{{ brand.id }}" class="btn btn-outline-secondary">Düzenle</a>
         </td>
       </tr>
